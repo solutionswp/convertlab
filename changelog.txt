@@ -2,7 +2,7 @@
 
 == 1.0.0 - 2024-01-XX ==
 * Initial release
-* Popup builder with React SPA
+* PHP-based popup builder interface (no build tools required)
 * Lead capture and management
 * REST API endpoints for popup config, lead submission, and event tracking
 * Frontend popup rendering with trigger logic (time delay, scroll percent, exit intent)
