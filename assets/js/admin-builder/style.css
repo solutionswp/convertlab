@@ -1,0 +1,99 @@
+/**
+ * Admin Builder Styles
+ *
+ * @package ConvertLab
+ * @since 1.0.0
+ */
+
+.convertlab-builder {
+  padding: 20px;
+}
+
+.convertlab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.convertlab-header h2 {
+  margin: 0;
+}
+
+.convertlab-empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+  border: 1px solid #ccd0d4;
+  border-radius: 4px;
+}
+
+.convertlab-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccd0d4;
+}
+
+.convertlab-editor-header h2 {
+  margin: 0;
+}
+
+.convertlab-editor-sections {
+  background: #fff;
+  border: 1px solid #ccd0d4;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.convertlab-section {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.convertlab-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.convertlab-section h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.convertlab-fields-list {
+  margin-top: 15px;
+}
+
+.convertlab-field-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.convertlab-field-item select,
+.convertlab-field-item input[type="text"] {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.convertlab-field-item label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  white-space: nowrap;
+}
+

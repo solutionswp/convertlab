@@ -1,0 +1,31 @@
+{
+  "name": "Minimal",
+  "description": "Simple and clean popup design",
+  "design": {
+    "title": "Subscribe to Our Newsletter",
+    "text": "Get the latest updates and exclusive offers delivered to your inbox.",
+    "background_color": "#ffffff",
+    "button_text": "Subscribe",
+    "button_color": "#0073aa"
+  },
+  "fields": [
+    {
+      "type": "email",
+      "name": "email",
+      "label": "Email",
+      "required": true,
+      "placeholder": "Enter your email"
+    }
+  ],
+  "triggers": {
+    "page_targeting": "all",
+    "time_delay": 3,
+    "scroll_percent": 0,
+    "show_once": true
+  },
+  "thank_you": {
+    "message": "Thank you for subscribing!",
+    "redirect": ""
+  }
+}
+

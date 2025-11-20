@@ -1,0 +1,39 @@
+{
+  "name": "Image + Text",
+  "description": "Popup with image and text content",
+  "design": {
+    "title": "Special Offer",
+    "text": "Sign up now and get 20% off your first order!",
+    "image": 0,
+    "background_color": "#f8f8f8",
+    "button_text": "Get Started",
+    "button_color": "#d63638"
+  },
+  "fields": [
+    {
+      "type": "email",
+      "name": "email",
+      "label": "Email",
+      "required": true,
+      "placeholder": "Enter your email"
+    },
+    {
+      "type": "name",
+      "name": "name",
+      "label": "Name",
+      "required": false,
+      "placeholder": "Enter your name"
+    }
+  ],
+  "triggers": {
+    "page_targeting": "all",
+    "time_delay": 5,
+    "scroll_percent": 50,
+    "show_once": true
+  },
+  "thank_you": {
+    "message": "Thank you! Check your email for your discount code.",
+    "redirect": ""
+  }
+}
+

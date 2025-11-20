@@ -1,0 +1,31 @@
+{
+  "name": "Coupon Popup",
+  "description": "Coupon code popup for eCommerce",
+  "design": {
+    "title": "Get 15% Off Your Order!",
+    "text": "Enter your email to receive an exclusive coupon code.",
+    "background_color": "#fff3cd",
+    "button_text": "Get Coupon",
+    "button_color": "#28a745"
+  },
+  "fields": [
+    {
+      "type": "email",
+      "name": "email",
+      "label": "Email",
+      "required": true,
+      "placeholder": "Enter your email"
+    }
+  ],
+  "triggers": {
+    "page_targeting": "product",
+    "time_delay": 0,
+    "scroll_percent": 30,
+    "show_once": true
+  },
+  "thank_you": {
+    "message": "Your coupon code: SAVE15",
+    "redirect": ""
+  }
+}
+

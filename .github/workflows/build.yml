@@ -1,0 +1,78 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          cd assets/js/admin-builder
+          npm install
+
+      - name: Build assets
+        run: |
+          cd assets/js/admin-builder
+          npm run build
+
+      - name: Create plugin zip
+        run: |
+          zip -r convertlab.zip . -x "*.git*" -x "*.github*" -x "node_modules/*" -x "assets/js/admin-builder/node_modules/*" -x "assets/js/admin-builder/dist/*" -x "*.zip" -x ".DS_Store"
+
+      - name: Extract version from tag
+        id: get_version
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+          else
+            VERSION=$(grep "Version:" convertlab.php | sed 's/.*Version: *\([0-9.]*\).*/\1/')
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: convertlab.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate update.json
+        run: |
+          VERSION=${{ steps.get_version.outputs.version }}
+          RELEASE_URL="https://github.com/${{ github.repository }}/releases/download/v${VERSION}/convertlab.zip"
+          
+          cat > update.json << EOF
+          {
+            "version": "${VERSION}",
+            "download_url": "${RELEASE_URL}",
+            "homepage": "https://github.com/${{ github.repository }}",
+          "author": "SolutionsWP",
+          "author_url": "https://github.com/solutionswp",
+            "description": "A lightweight, eCommerce-focused WordPress plugin designed to help store owners increase conversions through popups, opt-ins, lead capture, behavioral targeting, and actionable insights.",
+            "changelog": "See https://github.com/${{ github.repository }}/releases"
+          }
+          EOF
+
+      - name: Upload update.json
+        uses: actions/upload-artifact@v3
+        with:
+          name: update.json
+          path: update.json
+

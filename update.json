@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "download_url": "https://github.com/solutionswp/convertlab/releases/download/v1.0.0/convertlab.zip",
+  "homepage": "https://github.com/solutionswp/convertlab",
+  "author": "SolutionsWP",
+  "author_url": "https://github.com/solutionswp",
+  "description": "A lightweight, eCommerce-focused WordPress plugin designed to help store owners increase conversions through popups, opt-ins, lead capture, behavioral targeting, and actionable insights.",
+  "changelog": "See https://github.com/solutionswp/convertlab/releases"
+}
+

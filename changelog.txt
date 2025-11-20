@@ -1,0 +1,21 @@
+= ConvertLab Changelog =
+
+== 1.0.0 - 2024-01-XX ==
+* Initial release
+* Popup builder with React SPA
+* Lead capture and management
+* REST API endpoints for popup config, lead submission, and event tracking
+* Frontend popup rendering with trigger logic (time delay, scroll percent, exit intent)
+* Analytics tracking (impressions and conversions)
+* GitHub-based update mechanism
+* Settings page for configuration
+* Leads export to CSV
+* Three pre-built popup templates (Minimal, Image + Text, Coupon)
+* Webhook integration support
+* Database installer for leads table
+* Custom Post Type for popups
+* Admin menu structure
+* Security: All inputs sanitized and validated
+* WordPress coding standards compliance
+* Internationalization ready
+
