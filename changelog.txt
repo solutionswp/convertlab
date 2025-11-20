@@ -1,5 +1,11 @@
 = ConvertLab Changelog =
 
+== 1.0.1 - 2024-01-XX ==
+* Fixed admin menu visibility issue - menu now appears correctly
+* Changed custom capabilities to standard WordPress capabilities
+* Fixed hook timing issue where AdminMenu was initialized too late
+* All admin menu items now use manage_options capability
+
 == 1.0.0 - 2024-01-XX ==
 * Initial release
 * PHP-based popup builder interface (no build tools required)

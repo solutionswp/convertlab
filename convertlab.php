@@ -3,7 +3,7 @@
  * Plugin Name: ConvertLab
  * Plugin URI: https://github.com/solutionswp/convertlab
  * Description: A lightweight, eCommerce-focused WordPress plugin designed to help store owners increase conversions through popups, opt-ins, lead capture, behavioral targeting, and actionable insights.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: SolutionsWP
  * Author URI: https://github.com/solutionswp
  * License: GPL v2 or later
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin version.
  */
-define( 'CONVERTLAB_VERSION', '1.0.0' );
+define( 'CONVERTLAB_VERSION', '1.0.1' );
 
 /**
  * Plugin directory path.
@@ -122,8 +122,9 @@ class ConvertLab {
 		register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 
-		// Initialize admin
+		// Initialize admin menu early (before admin_menu hook fires)
 		if ( is_admin() ) {
+			add_action( 'admin_menu', array( $this, 'init_admin_menu' ), 5 );
 			add_action( 'admin_init', array( $this, 'init_admin' ) );
 		}
 
@@ -165,6 +166,16 @@ class ConvertLab {
 	}
 
 	/**
+	 * Initialize admin menu (called early, before admin_menu hook).
+	 *
+	 * @since 1.0.0
+	 */
+	public function init_admin_menu() {
+		// Initialize admin menu
+		ConvertLab\Admin\AdminMenu::get_instance();
+	}
+
+	/**
 	 * Initialize admin functionality.
 	 *
 	 * @since 1.0.0
@@ -172,9 +183,6 @@ class ConvertLab {
 	public function init_admin() {
 		// Register Custom Post Type
 		ConvertLab\Admin\CPTPopup::get_instance();
-
-		// Initialize admin menu
-		ConvertLab\Admin\AdminMenu::get_instance();
 
 		// Initialize popup save handler
 		ConvertLab\Admin\PopupSaveHandler::get_instance();

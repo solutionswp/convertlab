@@ -96,7 +96,7 @@ class PopupBuilderPage {
 			return;
 		}
 
-		if ( ! current_user_can( 'edit_clb_popups' ) ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions.', 'convertlab' ) );
 		}
 
@@ -206,7 +206,7 @@ class PopupBuilderPage {
 	 * @since 1.0.0
 	 */
 	public function render() {
-		if ( ! current_user_can( 'edit_clb_popups' ) ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'convertlab' ) );
 		}
 

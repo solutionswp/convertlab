@@ -69,7 +69,7 @@ class AdminMenu {
 			'convertlab',
 			__( 'Popups', 'convertlab' ),
 			__( 'Popups', 'convertlab' ),
-			'edit_clb_popups',
+			'manage_options',
 			'convertlab',
 			array( $this, 'render_popups_page' )
 		);

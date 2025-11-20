@@ -87,7 +87,7 @@ class PopupSaveHandler {
 	 * @since 1.0.0
 	 */
 	public function check_permission() {
-		return current_user_can( 'edit_clb_popups' );
+		return current_user_can( 'manage_options' );
 	}
 
 	/**
