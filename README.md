@@ -123,4 +123,3 @@ GPL v2 or later
 ## Support
 
 For issues and feature requests, please use the GitHub issue tracker.
-
