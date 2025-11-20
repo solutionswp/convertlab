@@ -57,7 +57,9 @@ class PopupBuilderPage {
 	 * @since 1.0.0
 	 */
 	public function enqueue_scripts( $hook ) {
-		if ( 'toplevel_page_convertlab' !== $hook && 'convertlab_page_convertlab-edit' !== $hook ) {
+		// Check if we're on the ConvertLab admin page
+		$screen = get_current_screen();
+		if ( 'toplevel_page_convertlab' !== $hook ) {
 			return;
 		}
 
@@ -213,7 +215,7 @@ class PopupBuilderPage {
 		$action = isset( $_GET['action'] ) ? sanitize_text_field( $_GET['action'] ) : 'list';
 		$popup_id = isset( $_GET['popup_id'] ) ? absint( $_GET['popup_id'] ) : 0;
 
-		if ( 'edit' === $action && $popup_id ) {
+		if ( 'edit' === $action ) {
 			$this->render_editor( $popup_id );
 		} else {
 			$this->render_list();
