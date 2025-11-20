@@ -14,21 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: |
-          cd assets/js/admin-builder
-          npm install
-
-      - name: Build assets
-        run: |
-          cd assets/js/admin-builder
-          npm run build
-
       - name: Create plugin zip
         run: |
           zip -r convertlab.zip . -x "*.git*" -x "*.github*" -x "node_modules/*" -x "assets/js/admin-builder/node_modules/*" -x "assets/js/admin-builder/dist/*" -x "*.zip" -x ".DS_Store"

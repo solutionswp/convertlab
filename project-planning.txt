@@ -1,0 +1,377 @@
+✅ ConvertLab — Product Summary
+
+ConvertLab is a lightweight, eCommerce-focused WordPress plugin designed to help store owners increase conversions through popups, opt-ins, lead capture, behavioral targeting, and actionable insights.
+
+ConvertLab focuses on simplicity, speed, and eCommerce-centric triggers — unlike subscription-heavy SaaS competitors. The plugin will be developer-friendly, modular, GitHub-updated, and agency-ready.
+
+🎯 Core Value Proposition
+
+ConvertLab increases store conversions through real-time customer engagement tools:
+
+Beautiful popups & opt-in forms
+
+Lead capture stored locally + export + integrations
+
+Smart display triggers optimized for WooCommerce
+
+Lightweight, fast, privacy-friendly
+
+One-click GitHub update mechanism
+
+Built with agency workflows in mind
+
+⭐ Core Features (Full Product Vision)
+1. Popup & Opt-in Builder
+
+Drag-and-drop builder (React/Vue SPA in WP Admin)
+
+Pre-designed templates
+
+Multiple form fields (email, name, phone, custom fields)
+
+Multi-step forms (later feature)
+
+Custom thank-you messages or redirect pages
+
+2. Display & Trigger Rules
+
+Page-level targeting: homepage, product pages, category pages
+
+Time delay
+
+Scroll %
+
+Exit intent
+
+Show once per day / week
+
+WooCommerce conditions:
+
+Cart not empty
+
+Cart value > X
+
+User viewed product X
+
+Checkout abandonment trigger
+
+3. Lead Capture
+
+Save leads in custom DB table
+
+View / filter leads inside WP admin
+
+Export CSV
+
+Mark synced/unsynced
+
+Webhooks + API integrations (Mailchimp, Klaviyo, etc.)
+
+4. Analytics & A/B Testing
+
+Impression counter
+
+Conversion counter
+
+Variant A/B testing
+
+Conversion rate display
+
+5. Integrations
+
+Webhook
+
+Mailchimp (MVP later)
+
+WooCommerce coupon auto-generation (later)
+
+6. Update Mechanism
+
+GitHub-hosted zip releases
+
+update.json building automatic updates
+
+Plugin checks your update.json periodically
+
+No dependency on WordPress.org repo
+
+🧩 MVP (Minimum Viable Product)
+
+The MVP is designed to be small, buildable fast, and extendable.
+
+MVP Version 1.0
+
+Includes:
+
+Popup editor with basic layout controls (title, text, image, form, button)
+
+3–5 ready-made templates (simple)
+
+Display rules:
+
+Page targeting (all pages, product pages)
+
+Time delay
+
+Scroll trigger
+
+Lead capture:
+
+Custom DB table
+
+Save leads from popups
+
+Simple leads list table in admin
+
+Basic analytics:
+
+Impressions
+
+Conversions
+
+Popup shortcode + frontend display engine
+
+GitHub-based plugin updates using update.json
+
+Settings panel for update.json URL
+
+Basic REST endpoints:
+
+Fetch popup config
+
+Submit lead
+
+Track conversion
+
+Lightweight frontend JS + CSS
+
+No advanced logic yet. Keep footprint small.
+
+⚙️ ConvertLab — Cursor-Friendly Development Plan
+
+This section is formatted as directly actionable tasks for Cursor, each becoming small coding sessions or file generation units.
+
+📁 1. Project Structure (Cursor Tasks)
+⚙️ 2. Initial Setup Tasks (Cursor)
+Task 1 — Create plugin bootstrap
+
+Plugin header
+
+Constant definitions
+
+File requires
+
+Activation hook
+
+Uninstall hook
+
+Task 2 — Create DB installer
+
+Create leads table
+
+Versioning system for DB updates
+
+Task 3 — Register CPT: clb_popup
+
+Supports title + custom meta
+
+Will store popup configuration
+
+🧠 3. Admin UI Tasks
+Task 4 — Build Admin Menu
+
+“ConvertLab → Popups”
+
+“ConvertLab → Leads”
+
+“ConvertLab → Settings”
+
+Task 5 — Popup Builder SPA shell
+
+Create admin page that loads a React or Vue single-page app
+
+Build tool: Vite or Webpack
+
+Should load only on specific admin pages
+
+Task 6 — Popup settings schema
+
+Fields for popup title, content, fields, design, triggers
+
+JSON-based storage in postmeta
+
+Task 7 — Leads table UI
+
+List leads stored in DB
+
+Pagination
+
+CSV export button
+
+Task 8 — Settings page
+
+update.json URL input
+
+Global script settings
+
+Optional toggles
+
+🌐 4. Frontend Rendering Tasks
+Task 9 — Popup Renderer
+
+Fetch popup data from REST API
+
+Build popup DOM
+
+Inject HTML + CSS
+
+Trigger conditions:
+
+Time delay
+
+Scroll %
+
+Task 10 — Lead Submission Logic
+
+Capture form fields
+
+AJAX → REST endpoint
+
+Success message
+
+Task 11 — Impression + Conversion tracking
+
+REST endpoint hit
+
+Store counts in postmeta
+
+🔌 5. REST API Tasks
+Task 12 — Register REST namespace convertlab/v1
+Task 13 — Endpoint: Get popup config
+
+Return popup settings by ID
+
+Validate visibility rules
+
+Task 14 — Endpoint: Save lead
+
+Validate email
+
+Save to DB
+
+Task 15 — Endpoint: Record event
+
+impression / conversion
+
+📈 6. Analytics Tasks
+Task 16 — Impression storage
+
+Increment postmeta _clb_impressions
+
+Task 17 — Conversion storage
+
+Increment _clb_conversions
+
+Task 18 — Simple analytics panel
+
+Show impressions, conversions, CVR%
+
+🔄 7. Update & Deployment Tasks
+Task 19 — Implement GitHub update checker
+
+Fetch update.json
+
+Compare version
+
+Display update notice
+
+Task 20 — Add admin setting for update.json URL
+
+Defaults to GitHub Pages or raw.githubusercontent
+
+Task 21 — GitHub Actions
+
+Build assets
+
+Create plugin zip
+
+Publish release
+
+Auto-generate update.json
+
+🔌 8. Integrations (Phase 2 After MVP)
+Task 22 — Webhook integration
+
+Allow webhook URL
+
+Send lead payload
+
+Task 23 — Mailchimp integration
+
+API key + audience setup
+
+🧪 9. Testing Tasks
+Task 24 — PHP Unit Tests
+
+Installer
+
+REST endpoints
+
+Sanitization functions
+
+Task 25 — JS Tests (optional)
+
+Popup builder components
+
+Task 26 — E2E tests
+
+Popup loads
+
+Lead submission works
+
+🏁 10. Finalization & Documentation Tasks
+Task 27 — README (developer friendly)
+
+Installation
+
+How to update
+
+How to build assets
+
+How to develop in Cursor
+
+Task 28 — Add admin onboarding wizard
+
+Short intro screen
+
+Create first popup prompt
+
+🚀 ConvertLab Development Workflow (Cursor Workflow)
+
+This is the workflow you can give Cursor as a single working plan:
+
+Create plugin bootstrap and folder structure
+
+Add DB installer and CPT for popups
+
+Build admin menu and React/Vue builder shell
+
+Implement popup schema + save logic
+
+Build REST API endpoints
+
+Build frontend renderer and triggers
+
+Build lead capture + leads admin UI
+
+Add analytics counters
+
+Implement GitHub update mechanism
+
+Build first 3 templates
+
+Optimize UI and workflows
+
+Prepare update.json + GitHub Action
+
+Release MVP v1.0

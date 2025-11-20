@@ -4,7 +4,7 @@ A lightweight, eCommerce-focused WordPress plugin designed to help store owners 
 
 ## Features
 
-- **Popup Builder**: Drag-and-drop builder with React SPA in WordPress admin
+- **Popup Builder**: Easy-to-use PHP-based builder in WordPress admin
 - **Lead Capture**: Store leads locally with export and integration capabilities
 - **Smart Triggers**: Time delay, scroll percentage, exit intent, and page targeting
 - **Analytics**: Track impressions, conversions, and conversion rates
@@ -22,25 +22,8 @@ A lightweight, eCommerce-focused WordPress plugin designed to help store owners 
 
 ### Prerequisites
 
-- Node.js 18+ and npm
 - WordPress 5.8+
 - PHP 7.4+
-
-### Building Assets
-
-The popup builder uses React with Vite. To build the admin assets:
-
-```bash
-cd assets/js/admin-builder
-npm install
-npm run build
-```
-
-For development with hot reload:
-
-```bash
-npm run dev
-```
 
 ### Project Structure
 
@@ -48,22 +31,20 @@ npm run dev
 convertlab/
 ├── assets/
 │   ├── css/
-│   │   └── popup.css          # Frontend popup styles
+│   │   ├── popup.css          # Frontend popup styles
+│   │   └── admin.css          # Admin interface styles
 │   └── js/
-│       ├── popup-loader.js   # Frontend popup loader
-│       └── admin-builder/    # React SPA for popup builder
-│           ├── components/
-│           ├── App.jsx
-│           └── main.jsx
+│       ├── popup-loader.js    # Frontend popup loader
+│       └── admin.js           # Admin interface JavaScript
 ├── src/
-│   ├── Admin/                # Admin functionality
-│   ├── API/                  # REST API endpoints
-│   ├── Frontend/             # Frontend rendering
-│   └── Utils/                # Utility classes
+│   ├── Admin/                 # Admin functionality
+│   ├── API/                   # REST API endpoints
+│   ├── Frontend/              # Frontend rendering
+│   └── Utils/                 # Utility classes
 ├── templates/
-│   └── popups/               # Popup templates
-├── convertlab.php            # Main plugin file
-├── uninstall.php             # Uninstall handler
+│   └── popups/                # Popup templates
+├── convertlab.php             # Main plugin file
+├── uninstall.php              # Uninstall handler
 └── README.md
 ```
 
