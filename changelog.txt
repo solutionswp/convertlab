@@ -1,5 +1,10 @@
 = ConvertLab Changelog =
 
+== 1.0.2 - 2024-01-XX ==
+* Fixed popup editor not showing when creating new popups
+* Fixed condition that prevented editor from displaying when action=edit without popup_id
+* Improved admin script enqueuing for better compatibility
+
 == 1.0.1 - 2024-01-XX ==
 * Fixed admin menu visibility issue - menu now appears correctly
 * Changed custom capabilities to standard WordPress capabilities

@@ -3,7 +3,7 @@
  * Plugin Name: ConvertLab
  * Plugin URI: https://github.com/solutionswp/convertlab
  * Description: A lightweight, eCommerce-focused WordPress plugin designed to help store owners increase conversions through popups, opt-ins, lead capture, behavioral targeting, and actionable insights.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: SolutionsWP
  * Author URI: https://github.com/solutionswp
  * License: GPL v2 or later
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin version.
  */
-define( 'CONVERTLAB_VERSION', '1.0.1' );
+define( 'CONVERTLAB_VERSION', '1.0.2' );
 
 /**
  * Plugin directory path.
