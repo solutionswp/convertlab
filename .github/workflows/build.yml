@@ -14,10 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Create plugin zip
-        run: |
-          zip -r convertlab.zip . -x "*.git*" -x "*.github*" -x "node_modules/*" -x "assets/js/admin-builder/node_modules/*" -x "assets/js/admin-builder/dist/*" -x "*.zip" -x ".DS_Store"
-
       - name: Extract version from tag
         id: get_version
         run: |
@@ -27,37 +23,90 @@ jobs:
             VERSION=$(grep "Version:" convertlab.php | sed 's/.*Version: *\([0-9.]*\).*/\1/')
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Version extracted: $VERSION"
 
-      - name: Create release
+      - name: Read changelog
+        id: changelog
+        run: |
+          if [ -f changelog.txt ]; then
+            # Extract changelog for current version
+            VERSION=${{ steps.get_version.outputs.version }}
+            CHANGELOG=$(awk "/^== $VERSION -/,/^== /" changelog.txt | head -n -1 | sed 's/^== .* ==$//' | sed '/^$/d' | sed 's/^\* /- /')
+            echo "changelog<<EOF" >> $GITHUB_OUTPUT
+            echo "$CHANGELOG" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "changelog=See release notes" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create plugin zip
+        run: |
+          zip -r convertlab.zip . \
+            -x "*.git*" \
+            -x "*.github*" \
+            -x "node_modules/*" \
+            -x "*.zip" \
+            -x ".DS_Store" \
+            -x "project-planning.txt"
+          echo "Plugin ZIP created successfully"
+
+      - name: Create or update GitHub release
         uses: softprops/action-gh-release@v1
         with:
           files: convertlab.zip
+          tag_name: v${{ steps.get_version.outputs.version }}
+          name: ConvertLab v${{ steps.get_version.outputs.version }}
+          body: |
+            ## ConvertLab v${{ steps.get_version.outputs.version }}
+            
+            ${{ steps.changelog.outputs.changelog }}
+            
+            ### Installation
+            
+            Download the `convertlab.zip` file and install it via WordPress Admin → Plugins → Add New → Upload Plugin
+            
+            ### Automatic Updates
+            
+            If you have the update URL configured in ConvertLab → Settings, the plugin will automatically detect this update.
           draft: false
           prerelease: false
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate update.json
+      - name: Update update.json in repository
         run: |
           VERSION=${{ steps.get_version.outputs.version }}
           RELEASE_URL="https://github.com/${{ github.repository }}/releases/download/v${VERSION}/convertlab.zip"
+          
+          # Read current changelog for update.json
+          if [ -f changelog.txt ]; then
+            CHANGELOG_TEXT=$(awk "/^== $VERSION -/,/^== /" changelog.txt | head -n -1 | sed 's/^== .* ==$//' | sed '/^$/d' | sed 's/^\* /- /' | sed ':a;N;$!ba;s/\n/\\n/g')
+          else
+            CHANGELOG_TEXT="See https://github.com/${{ github.repository }}/releases for full changelog"
+          fi
           
           cat > update.json << EOF
           {
             "version": "${VERSION}",
             "download_url": "${RELEASE_URL}",
             "homepage": "https://github.com/${{ github.repository }}",
-          "author": "SolutionsWP",
-          "author_url": "https://github.com/solutionswp",
+            "author": "SolutionsWP",
+            "author_url": "https://github.com/solutionswp",
             "description": "A lightweight, eCommerce-focused WordPress plugin designed to help store owners increase conversions through popups, opt-ins, lead capture, behavioral targeting, and actionable insights.",
-            "changelog": "See https://github.com/${{ github.repository }}/releases"
+            "changelog": "${CHANGELOG_TEXT}"
           }
           EOF
+          
+          echo "update.json created with version ${VERSION}"
 
-      - name: Upload update.json
-        uses: actions/upload-artifact@v3
-        with:
-          name: update.json
-          path: update.json
+      - name: Commit and push update.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add update.json
+          git commit -m "Auto-update update.json for v${{ steps.get_version.outputs.version }}" || echo "No changes to commit"
+          git push origin HEAD:main || echo "Nothing to push"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
